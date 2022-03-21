@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-3">
+    {% include 'messages.html' %}
+    <div class="card border border-3">
+        <div class="card-body">
+            {% if jobs %}
+            <div class="table-responsive">
+                <table class='table table-striped'> 
+                    <thead> 
+                    <tr> 
+                        <th scope='col'># 
+                        </th> 
+                        <th scope='col'>Job 
+                        </th> 
+                        <th scope='col'>Department 
+                        </th> 
+                        <th scope='col'>Location 
+                        </th>
+                        <th scope='col'>Status 
+                        </th> 
+                        <th scope='col'>Job Closing 
+                        </th>
+                        <th scope='col'>Apply 
+                        </th>  
+                    </tr>
+                    </thead> 
+                    <tbody> 
+                    {% for job in jobs %}
+                        <tr> 
+                            <th scope='row'>{{forloop.counter}} 
+                            </th> 
+                            <td>{{job.job}} 
+                            </td>
+                            <td>{{job.department}} 
+                            </td>
+                            <td>{{job.location}} 
+                            </td>
+                            <td>{% if job.status %} <div class="text-success">Open</div> {% else %} <div class="text-danger">Closed</div>{% endif %}
+                            </td>
+                            <td>{{job.last_date|date}} 
+                            </td>
+                            <td>
+                            {% if job.status %}
+                            <button type="button" id="applybtn" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop{{job.id}}">
+                            Apply
+                            </button>
+                            {% endif %}
+                            </td>
+                        </tr>
+                        <div class="modal fade" id="staticBackdrop{{job.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <p class="modal-title" id="staticBackdropLabel"><h5>{{job.job}} | {{job.department}}</h5></p>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                {% include 'apply/apply.html' %}
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    </tbody> 
+                </table>
+                {% else %}
+                <div class="text-center">
+                    <h2>No Jobs available</h2>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

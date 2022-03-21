@@ -1,0 +1,71 @@
+  <form class="m-3" action="{% url 'apply' %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="hidden" name='job_title' id="job_title" value="{{job.job}}">
+      <div class="row mb-4">
+        <div class="col">
+          <div class="form-outline">
+            <input type="text" name='first' id="first" class="form-control">
+            <label class="form-label" for="first">First name</label>
+          </div>
+        </div>
+        <div class="col">
+          <div class="form-outline">
+            <input type="text" name='last' id="last" class="form-control">
+            <label class="form-label" for="last">Last name</label>
+          </div>
+        </div>
+      </div>
+    
+      <div class="row mb-4">
+          <div class="col">
+            <div class="form-outline">
+              <input type="email" name='email' id="emailadd" class="form-control" >
+              <label class="form-label" for="emailadd">Email address</label>
+              </div>
+          </div>
+          <div class="col">
+              <div class="form-outline">
+                  <input type="text" name="mobile" id="mobile" class="form-control">
+                  <label class="form-label" for="mobile">Mobile No.</label>
+              </div>
+          </div>
+      </div>
+    
+      <div class="row mb-4">
+          <div class="col">
+            <div class="form-outline">
+              <select id="education" name="education" class="form-control">
+                  <option value="Phd">Phd</option>
+                  <option value="MS">MS</option>
+                  <option value="BS">BS</option>
+                </select>
+              <label class="form-label" for="education">Education</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-outline">
+              <select id="experience" name="experience" class="form-control">
+                  <option value="Fresh">Fresh</option>
+                  <option value="1-year">1-year</option>
+                  <option value="2-years">2-years</option>
+                </select>
+              <label class="form-label" for="experience">Experience</label>
+            </div>
+          </div>
+        </div>
+    
+        <div class="form-outline">
+          <label class="form-label" for="fileresume">Resume/CV (.Pdf)</label>
+          <input id="fileresume" name="fileresume" class="input-file" type="file">
+        </div>
+        
+        <!-- Button -->
+
+      <div class="form-group">
+          <div class="text-center mt-2 ">
+              <button type="sumbit" id="submitbtn" class="btn btn-success">Submit</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+      </div>
+
+    </form>

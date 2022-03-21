@@ -1,0 +1,32 @@
+  <form class="m-3" action="{% url 'dashboard' %}" method="POST">
+    {% csrf_token %}
+    <input type="hidden" name='applicant_id' id="applicant_id" value="{{applicant.id}}">
+    <input type="hidden" name='applicant_name_id' id="applicant_name_id" value="{{applicant.name.id}}">
+    <div class="row mb-4">
+      <div class="form-outline">
+        <label class="form-label" for="name">Name</label>
+        <input type="text" name='name' id="name" class="form-control" value="{{applicant.name}}" readonly>
+      </div>
+      <div class='form-outline'> 
+        <label for='remarks'>Remarks</label> 
+        <textarea class='form-control' name="remarks" id='remarks' rows='3'>{{applicant.remarks}}</textarea> 
+      </div>
+      <div class='form-outline'> 
+        <label for='ratings'>Ratings</label> 
+        <select class='form-control' name='ratings' id='ratings'> <option>1</option> <option>2</option> <option>3</option> <option>4</option> <option>5</option>
+        <option>6</option> <option>7</option> <option>8</option> <option>9</option> <option>10</option> </select>      
+      </div>
+    </div>
+    <div class="row mb-4">
+      <div class='form-outline'> 
+        <input type="checkbox" name='reviewd' id="reviewd{{applicant.id}}" class="form-check-input" value="False" onclick=check(this.id) required>
+        <label class="form-check-label" for="reviewd" >Reviewed ?</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="text-center mt-2 ">
+          <button type="sumbit" class="btn btn-success" >Submit</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </form>

@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-3">
+    {% include 'messages.html' %}
+    <div class="card border border-3">
+        <div class="card-body">
+            {% if applicants %}
+            <div class="table-responsive">
+                <table class='table table-striped'> 
+                    <thead> 
+                    <tr> 
+                        <th scope='col'># 
+                        </th> 
+                        <th scope='col'>Name 
+                        </th> 
+                        <th scope='col'>Job 
+                        </th> 
+                        <th scope='col'>Exp. 
+                        </th> 
+                        <th scope='col'>Edu. 
+                        </th>
+                        <th scope='col'>Resume
+                        </th>
+                        <th scope='col'>Ratings
+                        </th>  
+                        <th scope='col'>Remarks
+                        </th>
+                        <th scope='col'>Reviewed
+                        </th> 
+                    </tr>
+                    </thead> 
+                    <tbody> 
+                    {% for applicant in applicants %}
+                        <tr> 
+                            <th scope='row'>{{forloop.counter}} 
+                            </th> 
+                            <td>{{applicant.name}}
+                            </td>
+                            <td>{{applicant.name.job}} 
+                            </td>
+                            <td>{{applicant.name.exp}} 
+                            </td>
+                            <td>{{applicant.name.education}}
+                            </td>
+                            <td>
+                                <a href="{{applicant.name.resume.url}}">Download</a>
+                            </td>
+                            <td>
+                            {% if not applicant.reviewd %}
+                                Nil
+                            {% else %}
+                            {{applicant.ratings}}
+                            {% endif %}
+                            </td>
+                            <td>
+                                {% if not applicant.remarks %} No-Remarks {% else %} {{applicant.remarks}}{% endif %}
+                            </td>
+                            <td>
+                            {% if not applicant.reviewd %}
+                                <button type="button" id="applybtn" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop2{{applicant.id}}">
+                                    Review
+                                </button>
+                            {% else %}
+                                <button type="button" id="applybtn" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#staticBackdrop2{{applicant.id}}">
+                                    Reviewed
+                                </button>
+                            {% endif %}
+                            </td>
+
+                          </tr>
+                          <div class="modal fade" id="staticBackdrop2{{applicant.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                              <div class="modal-dialog">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                  <p class="modal-title" ><h5>{{applicant.name.job}}</h5></p>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  </div>
+                                  <div class="modal-body">
+                                    {% include 'dashboard/review.html' %}
+                                  </div>
+                              </div>
+                              </div>
+                          </div>
+                        </tr>
+                    {% endfor %}
+                    </tbody> 
+                </table>
+            </div>
+        </div>
+        {% else %}
+        <h3 class="text-center">No Applications</h3>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
