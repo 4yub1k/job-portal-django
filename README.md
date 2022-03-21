@@ -1,5 +1,5 @@
 # job-portal
-Jobs portal Django
+Jobs portal Django, Easily post jobs and review the applications.
 
 **Add Job:**
 
