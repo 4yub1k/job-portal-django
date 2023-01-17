@@ -18,22 +18,43 @@ Jobs portal Django, Easily post jobs and review the applications.
    ```sh
      pip install -r requirements.txt
    ```
-3. Add SECRET_KEY (real/settings.py)
+3. Add SECRET_KEY (settings.py)\
+   To generate key : [YouTube](https://youtube.com/shorts/kcmVnL2rQDI?feature=share)
    ```
-   SECRET_KEY = '=========USE YOUR SECRET KEY=============' #from settings.py
+   SECRET_KEY = '=========USE YOUR SECRET KEY=============' # from settings.py
    ```
 4. Configure
    ```
    Configure Database(MySQL)
    Make migrations
+   python manage.py makemigrations
+   python manage.py migrate
    ```
 5. Run
    ```
-
    python manage.py runserver
    ```
-
-
+6. Run Tests:
+   ```
+   python -rP
+   ```
+   
+   ```python
+   ======================================================================= PASSES ======================================================================== 
+   _______________________________________________________________ test_new_applicant_job ________________________________________________________________ 
+   ---------------------------------------------------------------- Captured stdout call ----------------------------------------------------------------- 
+   ApplicantForm: engineer
+   _______________________________________________________________ test_new_applicant_name _______________________________________________________________ 
+   ---------------------------------------------------------------- Captured stdout call ----------------------------------------------------------------- 
+   ApplicantForm: Salah
+   __________________________________________________________ test_new_applicant_review_reviewd __________________________________________________________ 
+   ---------------------------------------------------------------- Captured stdout call ----------------------------------------------------------------- 
+   Review: True
+   ___________________________________________________________ test_new_applicant_review_name ____________________________________________________________ 
+   ---------------------------------------------------------------- Captured stdout call ----------------------------------------------------------------- 
+   Review: Salah
+   ============================================================ 4 passed in 0.96s ============================================================ 
+   ```
 
 
 **Add Job:**
