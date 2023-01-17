@@ -6,23 +6,31 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('apply', '0001_initial'),
+        ("apply", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='ApplicantForm',
+            name="ApplicantForm",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50)),
-                ('email', models.EmailField(max_length=200)),
-                ('mobile', models.CharField(max_length=15)),
-                ('education', models.CharField(max_length=50)),
-                ('exp', models.CharField(max_length=50)),
-                ('resume', models.FileField(upload_to='uploads/%Y/%m/%d/')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=50)),
+                ("email", models.EmailField(max_length=200)),
+                ("mobile", models.CharField(max_length=15)),
+                ("education", models.CharField(max_length=50)),
+                ("exp", models.CharField(max_length=50)),
+                ("resume", models.FileField(upload_to="uploads/%Y/%m/%d/")),
             ],
         ),
         migrations.DeleteModel(
-            name='Job_apply',
+            name="Job_apply",
         ),
     ]

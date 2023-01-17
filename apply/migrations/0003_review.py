@@ -7,18 +7,50 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('apply', '0002_applicantform_delete_job_apply'),
+        ("apply", "0002_applicantform_delete_job_apply"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Review',
+            name="Review",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('resume', models.URLField()),
-                ('ratings', models.CharField(choices=[(1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6), (7, 7), (8, 8), (9, 9), (10, 10)], default=1, max_length=2)),
-                ('remarks', models.TextField(blank=True)),
-                ('name', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='apply.applicantform')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("resume", models.URLField()),
+                (
+                    "ratings",
+                    models.CharField(
+                        choices=[
+                            (1, 1),
+                            (2, 2),
+                            (3, 3),
+                            (4, 4),
+                            (5, 5),
+                            (6, 6),
+                            (7, 7),
+                            (8, 8),
+                            (9, 9),
+                            (10, 10),
+                        ],
+                        default=1,
+                        max_length=2,
+                    ),
+                ),
+                ("remarks", models.TextField(blank=True)),
+                (
+                    "name",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="apply.applicantform",
+                    ),
+                ),
             ],
         ),
     ]

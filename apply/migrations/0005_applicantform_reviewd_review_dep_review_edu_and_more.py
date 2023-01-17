@@ -7,30 +7,30 @@ import django.utils.timezone
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('apply', '0004_review_post'),
+        ("apply", "0004_review_post"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='applicantform',
-            name='reviewd',
+            model_name="applicantform",
+            name="reviewd",
             field=models.BooleanField(default=False),
         ),
         migrations.AddField(
-            model_name='review',
-            name='dep',
+            model_name="review",
+            name="dep",
             field=models.CharField(default=django.utils.timezone.now, max_length=50),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='review',
-            name='edu',
+            model_name="review",
+            name="edu",
             field=models.CharField(default=django.utils.timezone.now, max_length=50),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='review',
-            name='exp',
+            model_name="review",
+            name="exp",
             field=models.CharField(default=django.utils.timezone.now, max_length=50),
             preserve_default=False,
         ),

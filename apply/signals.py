@@ -3,6 +3,7 @@ from .models import Review
 from django.dispatch import receiver
 from .models import ApplicantForm
 
+
 @receiver(post_save, sender=ApplicantForm)
 def create_review(sender, instance, created, **kwargs):
     if created:

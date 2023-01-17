@@ -1,5 +1,13 @@
-from pathlib import Path
 import os
+import dj_database_url
+
+from pathlib import Path
+from django.contrib.messages import constants as messages
+from dotenv import load_dotenv
+
+
+load_dotenv()   # load env variables
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -8,12 +16,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '+++ Update SECRET KEY+++++++++++++'
+SECRET_KEY = os.environ.get('SECRET_KEY')
+DEBUG = os.environ.get('DEBUG') == 'True'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'job-portal-ayubi.fly.dev', 'job.salahuddin.org']
+CSRF_TRUSTED_ORIGINS = ['https://job-portal-ayubi.fly.dev', 'https://job.salahuddin.org']
 
 
 # Application definition
@@ -29,11 +36,13 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',    # whitenoise
     'django.contrib.staticfiles',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',   # whitenoise
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -47,7 +56,7 @@ ROOT_URLCONF = 'job.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -62,7 +71,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'job.wsgi.application'
 
-from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
     messages.ERROR: 'danger',
 
@@ -71,22 +79,11 @@ MESSAGE_TAGS = {
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {  
-    """UPDATE"""
-    
-    'default': {  
-        'ENGINE': 'django.db.backends.mysql',  
-        'NAME': 'job_db',  #DB name
-        'USER': 'salah',  
-        'PASSWORD': 'salah',  
-        'HOST': 'localhost',  
-        'PORT': '3306',  
-        # 'OPTIONS': {  
-        #     'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"  
-        #     #to handle the invalid or missing values from being stored in the database by INSERT and UPDATE statements.
-        # }  
-    }  
-}  
+DATABASES = {
+    'default': dj_database_url.config(
+        default='sqlite:///' + os.path.join('db.sqlite3')
+    )
+}
 
 
 # Password validation
@@ -119,22 +116,23 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-#logout
-LOGOUT_REDIRECT_URL='index'
-LOGIN_REDIRECT_URL='dashboard'
+# logout
+LOGOUT_REDIRECT_URL = 'index'
+LOGIN_REDIRECT_URL = 'dashboard'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'     # whitenoise
+
 STATIC_URL = 'static/'
-STATIC_ROOT=os.path.join(BASE_DIR,'static')
-STATICFILES_DIRS=[
-    os.path.join(BASE_DIR,'job/static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'job/static')
 ]
 
-MEDIA_ROOT=os.path.join(BASE_DIR,'uploads')
-MEDIA_URL='/uploads/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+MEDIA_URL = '/uploads/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field

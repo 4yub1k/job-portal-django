@@ -6,47 +6,47 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('apply', '0006_remove_review_post_applicantform_job_review_job'),
+        ("apply", "0006_remove_review_post_applicantform_job_review_job"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='applicantform',
-            name='reviewd',
+            model_name="applicantform",
+            name="reviewd",
         ),
         migrations.AddField(
-            model_name='review',
-            name='reviewd',
+            model_name="review",
+            name="reviewd",
             field=models.BooleanField(default=False),
         ),
         migrations.AlterField(
-            model_name='review',
-            name='dep',
+            model_name="review",
+            name="dep",
             field=models.CharField(blank=True, max_length=50),
         ),
         migrations.AlterField(
-            model_name='review',
-            name='edu',
+            model_name="review",
+            name="edu",
             field=models.CharField(blank=True, max_length=50),
         ),
         migrations.AlterField(
-            model_name='review',
-            name='exp',
+            model_name="review",
+            name="exp",
             field=models.CharField(blank=True, max_length=50),
         ),
         migrations.AlterField(
-            model_name='review',
-            name='job',
+            model_name="review",
+            name="job",
             field=models.CharField(blank=True, max_length=100),
         ),
         migrations.AlterField(
-            model_name='review',
-            name='ratings',
+            model_name="review",
+            name="ratings",
             field=models.CharField(default=1, max_length=2),
         ),
         migrations.AlterField(
-            model_name='review',
-            name='resume',
+            model_name="review",
+            name="resume",
             field=models.URLField(blank=True),
         ),
     ]

@@ -7,14 +7,18 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('listings', '0003_initial'),
-        ('apply', '0003_review'),
+        ("listings", "0003_initial"),
+        ("apply", "0003_review"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='review',
-            name='post',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to='listings.postjob'),
+            model_name="review",
+            name="post",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                to="listings.postjob",
+            ),
         ),
     ]

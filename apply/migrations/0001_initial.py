@@ -7,21 +7,28 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Job_apply',
+            name="Job_apply",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('first', models.CharField(max_length=50)),
-                ('last', models.CharField(max_length=50)),
-                ('email', models.EmailField(max_length=200)),
-                ('mobile', models.CharField(max_length=15)),
-                ('education', models.CharField(max_length=50)),
-                ('exp', models.CharField(max_length=50)),
-                ('resume', models.FileField(upload_to='uploads/%Y/%m/%d/')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("first", models.CharField(max_length=50)),
+                ("last", models.CharField(max_length=50)),
+                ("email", models.EmailField(max_length=200)),
+                ("mobile", models.CharField(max_length=15)),
+                ("education", models.CharField(max_length=50)),
+                ("exp", models.CharField(max_length=50)),
+                ("resume", models.FileField(upload_to="uploads/%Y/%m/%d/")),
             ],
         ),
     ]
