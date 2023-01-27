@@ -36,7 +36,7 @@ Jobs portal Django, Easily post jobs and review the applications.
    ```
 6. Run Tests:
    ```
-   python -rP
+   pytest -rP
    ```
    
    ```python
